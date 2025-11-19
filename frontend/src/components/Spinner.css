@@ -1,0 +1,120 @@
+/* Spinner Container */
+.spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Spinner Base Styles */
+.spinner {
+  border-radius: 50%;
+  border-style: solid;
+  border-color: #f3f3f3;
+  border-top-color: #3788d8;
+  animation: spin 1s linear infinite;
+}
+
+/* Spinner Sizes */
+.spinner-small {
+  width: 20px;
+  height: 20px;
+  border-width: 2px;
+}
+
+.spinner-medium {
+  width: 48px;
+  height: 48px;
+  border-width: 4px;
+}
+
+.spinner-large {
+  width: 64px;
+  height: 64px;
+  border-width: 5px;
+}
+
+/* Spinner Animation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Spinner Message */
+.spinner-message {
+  font-size: 1rem;
+  color: #666;
+  margin: 0;
+  text-align: center;
+}
+
+/* Screen Reader Only Text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .spinner-container {
+    gap: 0.75rem;
+  }
+
+  .spinner-small {
+    width: 18px;
+    height: 18px;
+  }
+
+  .spinner-medium {
+    width: 40px;
+    height: 40px;
+    border-width: 3px;
+  }
+
+  .spinner-large {
+    width: 56px;
+    height: 56px;
+    border-width: 4px;
+  }
+
+  .spinner-message {
+    font-size: 0.9375rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .spinner-container {
+    gap: 0.5rem;
+  }
+
+  .spinner-small {
+    width: 16px;
+    height: 16px;
+  }
+
+  .spinner-medium {
+    width: 36px;
+    height: 36px;
+  }
+
+  .spinner-large {
+    width: 48px;
+    height: 48px;
+  }
+
+  .spinner-message {
+    font-size: 0.875rem;
+  }
+}

@@ -1,0 +1,224 @@
+/* CalendarGrid Component Styles */
+
+.calendar-grid {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 100%;
+}
+
+/* Header Row */
+.calendar-grid-header {
+  display: grid;
+  grid-template-columns: 80px repeat(7, 1fr);
+  border-bottom: 2px solid #dadce0;
+  background-color: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.time-label-header {
+  border-right: 1px solid #dadce0;
+  background-color: #f8f9fa;
+}
+
+.day-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 8px;
+  border-right: 1px solid #dadce0;
+  background-color: #ffffff;
+  transition: background-color 0.2s ease;
+}
+
+.day-header:last-child {
+  border-right: none;
+}
+
+.day-header.today {
+  background-color: #e8f0fe;
+  border-left: 2px solid #1967d2;
+  border-right: 2px solid #1967d2;
+}
+
+.day-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: #70757a;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.day-header.today .day-name {
+  color: #1967d2;
+  font-weight: 600;
+}
+
+.day-number {
+  font-size: 20px;
+  font-weight: 400;
+  color: #3c4043;
+}
+
+.day-header.today .day-number {
+  background-color: #1967d2;
+  color: #ffffff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+}
+
+/* Grid Body */
+.calendar-grid-body {
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+  position: relative;
+}
+
+.calendar-grid-row {
+  display: grid;
+  grid-template-columns: 80px repeat(7, 1fr);
+  min-height: 60px;
+  border-bottom: 1px solid #dadce0;
+}
+
+.calendar-grid-row:last-child {
+  border-bottom: none;
+}
+
+/* Time Labels */
+.time-label {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 4px 8px 0 8px;
+  border-right: 1px solid #dadce0;
+  background-color: #f8f9fa;
+  font-size: 12px;
+  color: #70757a;
+  font-weight: 400;
+}
+
+.time-label span {
+  transform: translateY(-8px);
+}
+
+/* Time Slots - Styles moved to TimeSlot.css */
+
+/* Events Overlay */
+.events-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: 80px repeat(7, 1fr);
+  pointer-events: none; /* Allow clicks to pass through to time slots */
+}
+
+.day-events-container {
+  position: relative;
+  pointer-events: none; /* Allow clicks to pass through */
+}
+
+.event-wrapper {
+  position: absolute;
+  pointer-events: auto; /* Re-enable clicks for event blocks */
+  padding: 0 2px; /* Small padding between overlapping events */
+  box-sizing: border-box;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+  .calendar-grid-header {
+    grid-template-columns: 60px repeat(7, 1fr);
+  }
+
+  .calendar-grid-row {
+    grid-template-columns: 60px repeat(7, 1fr);
+    min-height: 48px;
+  }
+
+  .events-overlay {
+    grid-template-columns: 60px repeat(7, 1fr);
+  }
+
+  .time-label {
+    padding: 4px 4px 0 4px;
+    font-size: 10px;
+  }
+
+  .time-label span {
+    transform: translateY(-6px);
+  }
+
+  .day-header {
+    padding: 8px 4px;
+  }
+
+  .day-name {
+    font-size: 10px;
+    margin-bottom: 2px;
+  }
+
+  .day-number {
+    font-size: 16px;
+  }
+
+  .day-header.today .day-number {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .calendar-grid-header {
+    grid-template-columns: 50px repeat(7, 1fr);
+  }
+
+  .calendar-grid-row {
+    grid-template-columns: 50px repeat(7, 1fr);
+    min-height: 40px;
+  }
+
+  .events-overlay {
+    grid-template-columns: 50px repeat(7, 1fr);
+  }
+
+  .time-label {
+    padding: 2px 2px 0 2px;
+    font-size: 9px;
+  }
+
+  .day-header {
+    padding: 6px 2px;
+  }
+
+  .day-name {
+    font-size: 9px;
+  }
+
+  .day-number {
+    font-size: 14px;
+  }
+
+  .day-header.today .day-number {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+  }
+}

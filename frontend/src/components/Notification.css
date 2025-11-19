@@ -1,0 +1,212 @@
+.notification {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 320px;
+  max-width: 480px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background-color: white;
+  border-left: 4px solid;
+  animation: slideIn 0.3s ease-out;
+  transition: all 0.3s ease;
+}
+
+.notification-exit {
+  animation: slideOut 0.3s ease-out;
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+.notification-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.notification-icon-wrapper {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notification-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.notification-message {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #374151;
+  word-break: break-word;
+}
+
+.notification-close {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.notification-close:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #374151;
+}
+
+.notification-close:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.notification-close svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Success notification */
+.notification-success {
+  border-left-color: #10b981;
+}
+
+.notification-success .notification-icon-wrapper {
+  color: #10b981;
+}
+
+/* Error notification */
+.notification-error {
+  border-left-color: #ef4444;
+}
+
+.notification-error .notification-icon-wrapper {
+  color: #ef4444;
+}
+
+/* Info notification */
+.notification-info {
+  border-left-color: #3b82f6;
+}
+
+.notification-info .notification-icon-wrapper {
+  color: #3b82f6;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .notification {
+    min-width: 280px;
+    max-width: calc(100vw - 24px);
+    padding: 14px;
+    margin-bottom: 10px;
+  }
+
+  .notification-content {
+    gap: 10px;
+  }
+
+  .notification-message {
+    font-size: 13px;
+  }
+
+  .notification-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .notification-close {
+    padding: 6px;
+    /* Ensure adequate touch target */
+    min-width: 36px;
+    min-height: 36px;
+  }
+
+  .notification-close svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .notification {
+    min-width: 260px;
+    max-width: calc(100vw - 16px);
+    padding: 12px;
+    margin-bottom: 8px;
+  }
+
+  .notification-content {
+    gap: 8px;
+  }
+
+  .notification-message {
+    font-size: 12px;
+  }
+
+  .notification-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .notification-close {
+    min-width: 32px;
+    min-height: 32px;
+  }
+
+  .notification-close svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .notification-close {
+    /* Ensure adequate touch target */
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Remove hover effects on touch devices */
+  .notification-close:hover {
+    background-color: transparent;
+  }
+
+  /* Add active state for touch feedback */
+  .notification-close:active {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}

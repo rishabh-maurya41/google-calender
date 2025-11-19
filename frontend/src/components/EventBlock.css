@@ -1,0 +1,203 @@
+.event-block {
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  border-radius: 4px;
+  padding: 4px 6px;
+  cursor: pointer;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+/* Hover effect for interactivity (Requirement 9.5) */
+.event-block:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+  border-color: rgba(0, 0, 0, 0.2);
+  z-index: 20;
+}
+
+/* Focus state for keyboard navigation */
+.event-block:focus {
+  outline: 2px solid #4285f4;
+  outline-offset: 2px;
+  z-index: 20;
+}
+
+.event-block-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.event-title {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.event-time {
+  font-size: 11px;
+  font-weight: 400;
+  opacity: 0.95;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Handle small events (less than 30 minutes) */
+.event-block[style*="height: 30px"],
+.event-block[style*="height: 29px"],
+.event-block[style*="height: 28px"],
+.event-block[style*="height: 27px"],
+.event-block[style*="height: 26px"],
+.event-block[style*="height: 25px"],
+.event-block[style*="height: 24px"],
+.event-block[style*="height: 23px"],
+.event-block[style*="height: 22px"],
+.event-block[style*="height: 21px"],
+.event-block[style*="height: 20px"] {
+  padding: 2px 4px;
+}
+
+.event-block[style*="height: 30px"] .event-time,
+.event-block[style*="height: 29px"] .event-time,
+.event-block[style*="height: 28px"] .event-time,
+.event-block[style*="height: 27px"] .event-time,
+.event-block[style*="height: 26px"] .event-time,
+.event-block[style*="height: 25px"] .event-time,
+.event-block[style*="height: 24px"] .event-time,
+.event-block[style*="height: 23px"] .event-time,
+.event-block[style*="height: 22px"] .event-time,
+.event-block[style*="height: 21px"] .event-time,
+.event-block[style*="height: 20px"] .event-time {
+  display: none;
+}
+
+.event-block[style*="height: 30px"] .event-title,
+.event-block[style*="height: 29px"] .event-title,
+.event-block[style*="height: 28px"] .event-title,
+.event-block[style*="height: 27px"] .event-title,
+.event-block[style*="height: 26px"] .event-title,
+.event-block[style*="height: 25px"] .event-title,
+.event-block[style*="height: 24px"] .event-title,
+.event-block[style*="height: 23px"] .event-title,
+.event-block[style*="height: 22px"] .event-title,
+.event-block[style*="height: 21px"] .event-title,
+.event-block[style*="height: 20px"] .event-title {
+  font-size: 11px;
+  margin-bottom: 0;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  .event-block {
+    padding: 3px 5px;
+    border-radius: 3px;
+    /* Larger touch target */
+    min-height: 36px;
+  }
+
+  .event-title {
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .event-time {
+    font-size: 10px;
+  }
+
+  /* Adjust hover effect for touch devices */
+  .event-block:hover {
+    transform: none;
+  }
+
+  .event-block:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+}
+
+@media (max-width: 480px) {
+  .event-block {
+    padding: 2px 4px;
+    /* Ensure minimum touch target size */
+    min-height: 32px;
+  }
+
+  .event-title {
+    font-size: 10px;
+    line-height: 1.3;
+  }
+
+  .event-time {
+    font-size: 9px;
+  }
+
+  /* Simplify small event handling on mobile */
+  .event-block[style*="height: 30px"] .event-title,
+  .event-block[style*="height: 29px"] .event-title,
+  .event-block[style*="height: 28px"] .event-title,
+  .event-block[style*="height: 27px"] .event-title,
+  .event-block[style*="height: 26px"] .event-title,
+  .event-block[style*="height: 25px"] .event-title,
+  .event-block[style*="height: 24px"] .event-title,
+  .event-block[style*="height: 23px"] .event-title,
+  .event-block[style*="height: 22px"] .event-title,
+  .event-block[style*="height: 21px"] .event-title,
+  .event-block[style*="height: 20px"] .event-title {
+    font-size: 10px;
+  }
+}
+
+/* Touch device specific styles */
+@media (hover: none) and (pointer: coarse) {
+  .event-block {
+    /* Ensure adequate touch target */
+    min-height: 44px;
+  }
+
+  /* Remove hover effects on touch devices */
+  .event-block:hover {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    transform: none;
+  }
+
+  /* Add active state for touch feedback */
+  .event-block:active {
+    background-color: rgba(0, 0, 0, 0.05);
+    transform: scale(0.97);
+  }
+}
+
+/* Handle overlapping events - when multiple events are in the same time slot */
+/* This will be enhanced in Task 19 when integrating with CalendarGrid */
+.event-block.overlapping {
+  width: calc(100% - 4px);
+}
+
+.event-block.overlapping-left {
+  left: 2px;
+  right: auto;
+  width: calc(50% - 3px);
+}
+
+.event-block.overlapping-right {
+  left: auto;
+  right: 2px;
+  width: calc(50% - 3px);
+}
+
+/* For 3+ overlapping events */
+.event-block.overlapping-third {
+  width: calc(33.33% - 3px);
+}

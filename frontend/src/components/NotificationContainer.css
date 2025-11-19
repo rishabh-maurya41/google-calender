@@ -1,0 +1,32 @@
+.notification-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+.notification-container > * {
+  pointer-events: auto;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .notification-container {
+    top: 12px;
+    right: 12px;
+    left: 12px;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 480px) {
+  .notification-container {
+    top: 8px;
+    right: 8px;
+    left: 8px;
+  }
+}
