@@ -41,6 +41,10 @@ const EventSchema = new Schema<IEvent>(
       required: [true, 'End time is required'],
       validate: {
         validator: function (this: IEvent, value: Date): boolean {
+          // If startTime is not set, allow validation to pass (startTime is required separately)
+          if (!this.startTime) {
+            return true;
+          }
           return value > this.startTime;
         },
         message: 'End time must be after start time',

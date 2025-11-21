@@ -132,6 +132,38 @@ export const updateEvent = async (req: Request, res: Response): Promise<void> =>
     if (endTime !== undefined) updateData.endTime = new Date(endTime);
     if (color !== undefined) updateData.color = color;
 
+    // If only endTime is being updated, fetch the current document to validate against current startTime
+    if (endTime !== undefined && startTime === undefined) {
+      const currentEvent = await Event.findById(id);
+      if (currentEvent && new Date(endTime) <= currentEvent.startTime) {
+        res.status(400).json({
+          error: 'Validation failed',
+          details: [{
+            field: 'endTime',
+            message: 'End time must be after start time',
+          }],
+          statusCode: 400,
+        });
+        return;
+      }
+    }
+
+    // If only startTime is being updated, fetch the current document to validate against current endTime
+    if (startTime !== undefined && endTime === undefined) {
+      const currentEvent = await Event.findById(id);
+      if (currentEvent && new Date(startTime) >= currentEvent.endTime) {
+        res.status(400).json({
+          error: 'Validation failed',
+          details: [{
+            field: 'startTime',
+            message: 'Start time must be before end time',
+          }],
+          statusCode: 400,
+        });
+        return;
+      }
+    }
+
     // Find and update event
     const updatedEvent = await Event.findByIdAndUpdate(
       id,
